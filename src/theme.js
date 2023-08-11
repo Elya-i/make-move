@@ -1,5 +1,12 @@
 export const themeLight = {
+  palette: {
+    move: {
+      main: '#FFFFFF'
+    }
+  },
   colors: {
-    background: '#232323'
+    layout: {
+      background: '#232323'
+    }
   }
 };

@@ -6,5 +6,6 @@ export const LayoutStyled = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: ${({ theme }) => theme.colors.background };
+  padding: 0 1em;
+  background-color: ${({ theme }) => theme.colors.layout.background };
 `

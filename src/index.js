@@ -9,6 +9,9 @@ const globalStyles = css`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #FFFFFF;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
   }
 `
 
