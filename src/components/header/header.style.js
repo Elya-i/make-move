@@ -6,6 +6,7 @@ export const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #FFFFFF;
 `
 
 export const ContainerStyled = styled.div`

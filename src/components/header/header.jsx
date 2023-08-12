@@ -1,6 +1,7 @@
-import { IconButton } from '@mui/material'
-import { Menu, Event } from '@mui/icons-material'
 import { HeaderStyled, ContainerStyled, LogoStyled, CursiveStyled } from './header.style'
+import IconButton from '@mui/material/IconButton'
+import Menu from '@mui/icons-material/Menu'
+import Event from '@mui/icons-material/Event'
 import bolt from '../../assets/icons/bolt.svg'
 
 export const Header = (props) => {
