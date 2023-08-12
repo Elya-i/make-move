@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/make-move/static/js/main.8cd0d8ea.js",
+    "static/js/787.41e9aa2c.chunk.js": "/make-move/static/js/787.41e9aa2c.chunk.js",
+    "index.html": "/make-move/index.html",
+    "static/media/bolt.svg": "/make-move/static/media/bolt.aba2d2a441f0e2c7fb3f506ad0c63459.svg",
+    "main.8cd0d8ea.js.map": "/make-move/static/js/main.8cd0d8ea.js.map",
+    "787.41e9aa2c.chunk.js.map": "/make-move/static/js/787.41e9aa2c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.8cd0d8ea.js"
+  ]
+}
