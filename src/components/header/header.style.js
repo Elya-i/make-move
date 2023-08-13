@@ -1,12 +1,16 @@
 import styled from "@emotion/styled";
 
 export const HeaderStyled = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 1em;
   width: 100%;
   height: 4em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #FFFFFF;
+  background-color: ${({ theme }) => theme.palette.layout.background };
 `
 
 export const ContainerStyled = styled.div`

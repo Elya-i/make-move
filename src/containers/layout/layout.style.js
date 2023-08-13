@@ -6,6 +6,8 @@ export const LayoutStyled = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
-  padding: 0 1em;
+  padding: 4em 1em 80px 1em;
+  overflow-y: auto;
+  color: ${({ theme }) => theme.palette.move.main};
   background-color: ${({ theme }) => theme.palette.layout.background };
 `
