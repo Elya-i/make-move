@@ -2,24 +2,34 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const CalendarStyled = styled.div`
+    padding: 1em 0;
+`
+
+export const WeekDaysStyled = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 1em 0;
     color: ${({ theme }) => theme.palette.nav.fontColor}
 `;
 
-export const ItemStyled = styled.div`
-    width: 40px;
-`
-
 export const DayStyled = styled.div`
+    width: 40px;
     padding-bottom: 0.5em;
     font-size: 12px;
     font-weight: ${({ theme }) => theme.font.weight.medium};
     text-align: center;
 `
 
+export const CellsStyled = styled.div`
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    color: ${({ theme }) => theme.palette.nav.fontColor}
+    overflow: scroll;
+    width: 1200px;
+`;
+
 export const CellStyled = styled.div(({ theme, selected }) => css`
+    width: 40px;
     height: 32px;
     display: flex;
     align-items: center;
