@@ -8,7 +8,8 @@
     "build": "react-scripts build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "stop": "kill -15 `ps aux | grep react | awk '{print $2}'`"
   },
   "dependencies": {
     "@emotion/react": "~11.11.1",

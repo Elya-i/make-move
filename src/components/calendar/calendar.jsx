@@ -1,19 +1,20 @@
 import { CalendarStyled, WeekDaysStyled, CellsStyled, CellStyled, DayStyled } from './calendar.style';
-import { useDay } from './day-hook'
-import { DAYS } from './days.constant'
+import { useCalendar } from './impl/calendar-hook'
+import { DAYS } from './impl/days.constant'
 
 export const Calendar = (props) => {
-    const [getDate, getSelected, threeWeeks] = useDay()
+    const [weeks, getPrev, getNext] = useCalendar()
 
     return (
         <CalendarStyled>
-            <WeekDaysStyled>
+            <WeekDaysStyled onClick={getNext}>
                 {DAYS.map(({ id, name }) => <DayStyled key={id}>{name}</DayStyled>)}
             </WeekDaysStyled>
 
-
-            <CellsStyled>
-                {threeWeeks.map((date) => <CellStyled key={date.getDate()}>{date.getDate()}</CellStyled>)}
+            <CellsStyled onClick={getPrev}>
+                {weeks
+                    .flatMap((week) => week.getDates())
+                    .map((date) => <CellStyled key={date.getDate()}>{date.getDate()}</CellStyled>)}
             </CellsStyled>
         </CalendarStyled>
     );
