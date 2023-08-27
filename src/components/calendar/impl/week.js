@@ -2,10 +2,16 @@ import { WEEK_MS } from "./days.constant"
 
 class Week {
 
+    #id = Math.random() * 100
+
     #dates = []
 
     constructor(weekDays) {
         this.#dates = weekDays
+    }
+
+    getId() {
+        return this.#id
     }
 
     getDates() {

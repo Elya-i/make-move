@@ -1,4 +1,4 @@
-import { CalendarStyled, WeekDaysStyled, CellsStyled, CellStyled, DayStyled } from './calendar.style';
+import { CalendarStyled, WeekDaysStyled, CellsContainerStyled, WeekStyled, CellsStyled, CellStyled, DayStyled } from './calendar.style';
 import { useCalendar } from './impl/calendar-hook'
 import { DAYS } from './impl/days.constant'
 
@@ -7,15 +7,25 @@ export const Calendar = (props) => {
 
     return (
         <CalendarStyled>
-            <WeekDaysStyled onClick={getNext}>
+            <WeekDaysStyled>
                 {DAYS.map(({ id, name }) => <DayStyled key={id}>{name}</DayStyled>)}
             </WeekDaysStyled>
 
-            <CellsStyled onClick={getPrev}>
-                {weeks
-                    .flatMap((week) => week.getDates())
-                    .map((date) => <CellStyled key={date.getDate()}>{date.getDate()}</CellStyled>)}
-            </CellsStyled>
+            <CellsContainerStyled onScroll={({ target }) => {
+                if (target.scrollLeft > 80) {
+                    console.log('swipe')
+                }
+            }}>
+                <CellsStyled>
+                    {weeks.flatMap((week) => (
+                        <WeekStyled key={week.getId()}>
+                            {week
+                                .getDates()
+                                .map((date) => <CellStyled key={date.getDate()}>{date.getDate()}</CellStyled>)}
+                        </WeekStyled>
+                    ))}
+                </CellsStyled>
+            </CellsContainerStyled>
         </CalendarStyled>
     );
 }

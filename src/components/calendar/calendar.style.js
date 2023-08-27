@@ -19,13 +19,30 @@ export const DayStyled = styled.div`
     text-align: center;
 `
 
+export const CellsContainerStyled = styled.div`
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`
+
+export const WeekStyled = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: calc(100vw - 32px);
+
+    & + & {
+        margin-left: 20px;
+    }
+`
+
 export const CellsStyled = styled.div`
-    overflow: hidden;
     display: flex;
     justify-content: space-between;
     color: ${({ theme }) => theme.palette.nav.fontColor}
-    overflow: scroll;
-    width: 1200px;
+    overflow-x: hidden;
+    width: calc((100vw - 32px) * 3 + 60px)
 `;
 
 export const CellStyled = styled.div(({ theme, selected }) => css`
