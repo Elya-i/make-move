@@ -38,11 +38,11 @@ export const WeekStyled = styled.div`
 `
 
 export const CellsStyled = styled.div`
-    display: flex;
+    display: none;
     justify-content: space-between;
-    color: ${({ theme }) => theme.palette.nav.fontColor}
+    color: ${({ theme }) => theme.palette.nav.fontColor};
     overflow-x: hidden;
-    width: calc((100vw - 32px) * 3 + 60px)
+    width: calc((100vw - 32px) * 3 + 60px);
 `;
 
 export const CellStyled = styled.div(({ theme, selected }) => css`
