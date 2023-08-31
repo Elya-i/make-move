@@ -37,15 +37,16 @@ export const WeekStyled = styled.div`
     }
 `
 
-export const CellsStyled = styled.div`
-    display: none;
+export const CellsStyled = styled.div(({ theme, visible }) => css`
+    display: flex;
+    visibility: ${visible ? 'visible' : 'hidden'};
     justify-content: space-between;
-    color: ${({ theme }) => theme.palette.nav.fontColor};
+    color: ${theme.palette.nav.fontColor};
     overflow-x: hidden;
     width: calc((100vw - 32px) * 3 + 60px);
-`;
+`);
 
-export const CellStyled = styled.div(({ theme, selected }) => css`
+export const CellStyled = styled.div(({ theme, visible, selected }) => css`
     width: 40px;
     height: 32px;
     display: flex;
