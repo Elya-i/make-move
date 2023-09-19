@@ -1,45 +1,23 @@
-import { useEffect, useState, useRef } from 'react'
+import { useState } from 'react';
 import { CalendarStyled, WeekDaysStyled, CellsContainerStyled, WeekStyled, CellsStyled, CellStyled, DayStyled } from './calendar.style';
-import { useCalendar } from './impl/calendar-hook'
 import { DAYS } from './impl/days.constant'
 
-const BORDER = 80
-
 export const Calendar = (props) => {
-    const [visible, setVisible] = useState(false)
-    const [currentScroll, setCurrentScroll] = useState(0)
+    const [startValue, setStartValue] = useState(0);
+    const [lastValue, setLastValue] = useState(0);
 
-    const [weeks, getPrev, getNext] = useCalendar()
-    const scroll = useRef()
+    const handleStart = (e) => {
+        setStartValue(e.touches[0].clientX)
+    }
 
-    useEffect(() => {
-        const { current } = scroll
-        setCurrentScroll(current.scrollLeft)
-        current.scrollTo((current.scrollWidth - current.clientWidth) / 2, 0)
-        setVisible(true)
-    }, [])
+    const handleMove = (e) => {
+        const { clientX, screenX } = e.touches[0]
+        const currentValue = Math.floor(clientX) / 50
 
-    useEffect(() => {
-        getPrev()
-        const { current } = scroll
-        setCurrentScroll(current.scrollLeft)
-        current.scrollTo((current.scrollWidth - current.clientWidth) / 2, 0)
-    }, [currentScroll])
-
-    const handleScroll = ({ target }) => {
-        const { current } = scroll
-        if (currentScroll - target.scrollLeft > BORDER) {
-            current.scrollTo({
-                left: 0,
-                behavior: 'smooth'
-            })
-            setCurrentScroll(target.scrollLeft)
-        } else if (target.scrollLeft - currentScroll > BORDER) {
-            current.scrollTo({
-                left: current.scrollWidth,
-                behavior: 'smooth'
-            })
-            setCurrentScroll(target.scrollLeft)
+        if (clientX - startValue > 0) {
+            setLastValue(lastValue + currentValue)
+        } else {
+            setLastValue(lastValue - Math.abs(currentValue))
         }
     }
 
@@ -49,17 +27,24 @@ export const Calendar = (props) => {
                 {DAYS.map(({ id, name }) => <DayStyled key={id}>{name}</DayStyled>)}
             </WeekDaysStyled>
 
-            <CellsContainerStyled ref={scroll} onScroll={handleScroll}>
-                <CellsStyled visible={visible}>
-                    {weeks.flatMap((week) => (
-                        <WeekStyled key={week.getId()}>
-                            {week
-                                .getDates()
-                                .map((date) => <CellStyled key={date.getDate()}>{date.getDate()}</CellStyled>)}
-                        </WeekStyled>
-                    ))}
-                </CellsStyled>
-            </CellsContainerStyled>
+            <CellsStyled onTouchStart={handleStart} onTouchMove={handleMove}>
+                <WeekStyled translate={lastValue}>
+                    <CellStyled>1</CellStyled>
+                    <CellStyled>2</CellStyled>
+                    <CellStyled>3</CellStyled>
+                    <CellStyled>4</CellStyled>
+                    <CellStyled>5</CellStyled>
+                    <CellStyled>6</CellStyled>
+                    <CellStyled>7</CellStyled>
+                    <CellStyled>1</CellStyled>
+                    <CellStyled>2</CellStyled>
+                    <CellStyled>3</CellStyled>
+                    <CellStyled>4</CellStyled>
+                    <CellStyled>5</CellStyled>
+                    <CellStyled>6</CellStyled>
+                    <CellStyled>7</CellStyled>
+                </WeekStyled>
+            </CellsStyled>
         </CalendarStyled>
     );
 }
