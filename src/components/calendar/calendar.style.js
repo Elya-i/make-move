@@ -21,14 +21,13 @@ export const DayStyled = styled.div`
 
 export const CellsStyled = styled.div`
     overflow: hidden;
-    width: calc(100vw - 32px);
 `;
 
 export const WeekStyled = styled.ul`
     display: flex;
     justify-content: space-between;
     list-style: none;
-    width: calc(100vw * 2);
+    width: ${({ width }) => width + 'px'};
     transform: ${({ translate }) => `translateX(${translate}px)`};
     color: ${({ theme }) => theme.palette.nav.fontColor};
 `

@@ -1,17 +1,22 @@
 import { useState } from 'react';
-import { CalendarStyled, WeekDaysStyled, CellsContainerStyled, WeekStyled, CellsStyled, CellStyled, DayStyled } from './calendar.style';
+import { CalendarStyled, WeekDaysStyled, WeekStyled, CellsStyled, CellStyled, DayStyled } from './calendar.style';
 import { DAYS } from './impl/days.constant'
+import { useCalendar } from './impl/calendar-hook';
+
+const screenCenter = window.innerWidth / 2
+const weekWidth = (window.innerWidth - 32) * 3 + 16
 
 export const Calendar = (props) => {
+    const [weeks, getPrev, getNext] = useCalendar();
     const [startValue, setStartValue] = useState(0);
-    const [lastValue, setLastValue] = useState(0);
+    const [lastValue, setLastValue] = useState(weekWidth / 3 * -1 - 2);
 
     const handleStart = (e) => {
         setStartValue(e.touches[0].clientX)
     }
 
     const handleMove = (e) => {
-        const { clientX, screenX } = e.touches[0]
+        const { clientX } = e.touches[0]
         const currentValue = Math.floor(clientX) / 50
 
         if (clientX - startValue > 0) {
@@ -28,21 +33,10 @@ export const Calendar = (props) => {
             </WeekDaysStyled>
 
             <CellsStyled onTouchStart={handleStart} onTouchMove={handleMove}>
-                <WeekStyled translate={lastValue}>
-                    <CellStyled>1</CellStyled>
-                    <CellStyled>2</CellStyled>
-                    <CellStyled>3</CellStyled>
-                    <CellStyled>4</CellStyled>
-                    <CellStyled>5</CellStyled>
-                    <CellStyled>6</CellStyled>
-                    <CellStyled>7</CellStyled>
-                    <CellStyled>1</CellStyled>
-                    <CellStyled>2</CellStyled>
-                    <CellStyled>3</CellStyled>
-                    <CellStyled>4</CellStyled>
-                    <CellStyled>5</CellStyled>
-                    <CellStyled>6</CellStyled>
-                    <CellStyled>7</CellStyled>
+                <WeekStyled translate={lastValue} width={weekWidth}>
+                    {weeks.flatMap((week) => week.getDates()).map((date) => (
+                        <CellStyled key={date.getTime()}>{date.getDate()}</CellStyled>
+                    ))}
                 </WeekStyled>
             </CellsStyled>
         </CalendarStyled>
